@@ -1,0 +1,30 @@
+{
+  "name": "online-file-storage",
+  "version": "0.0.1",
+  "homepage": "https://github.com/training4developers/online-file-storage",
+  "authors": [
+    "Eric W. Greene <eric@training4developers.com>"
+  ],
+  "license": "Apache 2.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/www/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "underscore": "~1.8.3",
+    "backbone": "~1.2.1",
+    "marionette": "~2.4.2",
+    "moment": "~2.10.3",
+    "bootstrap": "~3.3.5",
+    "localforage": "~1.2.4",
+    "requirejs": "~2.1.18",
+    "dojo": "~1.10.4",
+    "dijit": "~1.10.4",
+    "handlebars": "~3.0.3"
+  }
+}
