@@ -11,24 +11,21 @@ module.exports = function(options) {
 		folderParts.push(options.rootFolder);
 	}
 
-	baseFolder = path.join(options.rootFolder || )
+	baseFolder = path.join(__dirname, options.rootFolder || "www");
 
-
-
-
-
-
-
-	app.use("/js", express.static(__dirname + "/www/js"));
-	app.use("/css", express.static(__dirname + "/www/css"));
-	app.use("/images", express.static(__dirname + "/www/images"));
+	app.use("/libs", express.static(path.join(baseFolder, "libs")));
+	app.use("/js", express.static(path.join(baseFolder, "js")));
+	app.use("/css", express.static(path.join(baseFolder, "css")));
+	app.use("/images", express.static(path.join(baseFolder, "images")));
 
 	app.use("/", function(req, res) {
-
-		res.sendFile(__dirname + "www/index.html");
-
+		res.sendFile(path.join(baseFolder, "index.html"));
 	});
 
+	http.createServer(app).listen(options.port, function() {
+		console.log("web server started on port " + options.port);
+	});
 
+	return app;
 
 };
