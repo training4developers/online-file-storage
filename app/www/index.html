@@ -4,14 +4,59 @@
 
 	<head>
 		<title>Online File Storage</title>
-		<link rel="stylesheet" src="css/site.min.css">
+		<link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.css">
+		<link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap-theme.css">
+		<link rel="stylesheet" href="css/site.min.css">
 	</head>
 
 	<body>
-		Online File Storage
-		<div id="onlineFileStorageApp"></div>
+		<header class="page-header">
+			<h1>Online File Storage</h1>
+		</header>
+		<div id="onlineFileStorageApp" class="container-fluid">
+
+			<div class="row">
+
+				<div class="col-md-3">
+					<nav>
+						<h3>Folders</h3>
+						<ul>
+							<li><a href="#">Home</a></li>
+							<li><a href="#">Photos</a></li>
+						<ul>
+					</nav>
+				</div>
+				
+				<div class="col-md-9">
+
+					<div class="row">
+						<div class="col-md-3">File Name</div>
+						<div class="col-md-3">Size</div>
+						<div class="col-md-3">Date Modified</div>
+						<div class="col-md-3">Action</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-3">sample_1.txt</div>
+						<div class="col-md-3">100kb</div>
+						<div class="col-md-3">7/18/2015</div>
+						<div class="col-md-3"><select>
+							<option>Select One...</option>
+							<option>Rename</option>
+							<option>Delete</option>
+							<option>Download</option>
+						</select></div>
+					</div>
+
+				</div>
+			</div>
+
+
+
+		</div>
 
 		<script src="libs/jquery/dist/jquery.js"></script>
+		<script src="libs/bootstrap/dist/js/bootstrap.js"></script>
 		<script src="libs/handlebars/handlebars.js"></script>
 		<script src="libs/underscore/underscore.js"></script>
 		<script src="libs/backbone/backbone.js"></script>
