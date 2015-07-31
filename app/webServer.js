@@ -1,15 +1,30 @@
-module.exports = function(http, options) {
+module.exports = function(options) {
 
 	var
 		express = require("express"),
 		path = require("path"),
+		bodyParser = require("body-parser"),
+		cookieParser = require("cookie-parser"),
+		multer = require("multer"),
 		app = express(),
 		baseFolder;
 
 	baseFolder = path.join(__dirname, options.rootFolder || "www");
 
 	// not needed because all lib files are being compressed
-	app.use("/libs", express.static(path.join(baseFolder, "libs")));
+	//app.use("/libs", express.static(path.join(baseFolder, "libs")));
+
+	app.use("/", bodyParser.json());
+	app.use("/api", bodyParser.urlencoded({ extended: false }));
+
+	app.use("/api", multer({
+		dest: path.join(__dirname, "uploads"),
+		rename: function(fieldName, fileName) {
+			return fileName;
+		}
+	}));
+
+	app.use(cookieParser());
 
 	app.use("/js", express.static(path.join(baseFolder, "js"), {
 		setHeaders: function(res, filePath) {
@@ -35,14 +50,5 @@ module.exports = function(http, options) {
 		res.sendFile(path.join(baseFolder, "index.html"));
 	});
 
-	http.createServer(app);
-
-	/*
-	.listen(options.port, function() {
-		console.log("web server started on port " + options.port);
-	});
-	*/
-
 	return app;
-
 };

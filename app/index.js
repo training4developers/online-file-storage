@@ -1,12 +1,38 @@
 var
-	program = require("commander-plus"),
+	program = require("commander"),
 	http = require("http"),
 	path = require("path"),
 	webServer = require("./webServer"),
 	fileUploadWebServer = require("./fileUploadWebServer"),
 	fileUploadSocketServer = require("./fileUploadSocketServer"),
 	notificationSocketServer = require("./notificationSocketServer"),
+	mongoose = require("mongoose"),
+	fileModel = require("./models/file.js"),
+	folderModel = require("./models/folder.js"),
 	app, options;
+	
+	
+mongoose.connect("mongodb://localhost/OnlineFileStorage");
+
+var folder = new Folder({
+	name: "root"
+});
+
+folder.save(function(err) {
+	
+	if (err) {
+		console.log(err);
+		return;
+	}
+	
+	console.log("folder saved...");
+	
+});
+
+
+
+/*
+	
 
 program
 	.version("0.0.1")
@@ -22,3 +48,4 @@ fileUploadWebServer(app);
 fileUploadSocketServer(http).;
 notificationSocketServer(http);
 startServer(http, app, options);
+*/
