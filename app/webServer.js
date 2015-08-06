@@ -7,14 +7,12 @@ module.exports = function(options) {
 		cookieParser = require("cookie-parser"),
 		multer = require("multer"),
 		app = express(),
-		baseFolder;
-
-	baseFolder = path.join(__dirname, options.rootFolder || "www");
+		baseFolder = path.join(__dirname, options.rootFolder || "www");
 
 	// not needed because all lib files are being compressed
 	//app.use("/libs", express.static(path.join(baseFolder, "libs")));
 
-	app.use("/", bodyParser.json());
+	app.use("/api", bodyParser.json());
 	app.use("/api", bodyParser.urlencoded({ extended: false }));
 
 	app.use("/api", multer({

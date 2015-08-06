@@ -34,7 +34,7 @@
     "grunt": "*",
     "grunt-contrib-compress": "*",
     "grunt-contrib-cssmin": "*",
-    "grunt-contrib-handlebars": "*",
+    "grunt-contrib-handlebars": "^0.10.2",
     "grunt-contrib-htmlmin": "*",
     "grunt-contrib-sass": "*",
     "grunt-contrib-uglify": "*",

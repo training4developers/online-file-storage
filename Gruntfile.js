@@ -1,5 +1,7 @@
 module.exports = function(grunt) {
 
+	var path = require("path");
+
 	grunt.initConfig({
 		webServer: {
 			rootFolder: "www",
@@ -36,7 +38,7 @@ module.exports = function(grunt) {
 					}
 				},
 				files: {
-					"app/www/js/app.templates.js": "app/templates-min/**/*.min.hbs"
+					"app/www/js/app.templates.js": "assets/handlebars-min/**/*.min.hbs"
 				}
 			}
 		},
@@ -47,9 +49,9 @@ module.exports = function(grunt) {
 	        collapseWhitespace: true
 	      },
         expand: true,
-        cwd: 'app/templates',
+        cwd: 'assets/handlebars',
         src: '*.hbs',
-        dest: 'app/templates-min/',
+        dest: 'assets/handlebars-min/',
         ext: ".min.hbs"
 	    }
 		},
@@ -59,7 +61,7 @@ module.exports = function(grunt) {
           sourcemap: "none"
         },
 				files: {
-					"app/www/css/site.css": "app/sass/site.scss"
+					"app/www/css/site.css": "assets/sass/site.scss"
 				}
 			}
 		},
@@ -141,17 +143,16 @@ module.exports = function(grunt) {
         }
       }
     },
-
 		watch: {
 			templates: {
-				files: ["app/templates/**/*.hbs"],
+				files: ["assets/handlebars/**/*.hbs"],
 				tasks: ["htmlmin", "handlebars"],
 				options: {
 					spawn: false
 				}
 			},
       css: {
-				files: "app/sass/**/*.scss",
+				files: "assets/sass/**/*.scss",
 				tasks: ["sass","cssmin","compress:css"]
 			},
 			js: {
@@ -159,7 +160,6 @@ module.exports = function(grunt) {
 				tasks: ["uglify:combine","compress:js"]
 			}
 		}
-
 	});
 
 	grunt.loadNpmTasks("grunt-contrib-watch");
@@ -170,17 +170,18 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-uglify");
   grunt.loadNpmTasks("grunt-contrib-compress");
 
-	grunt.registerTask("webServer", "start web server", function() {
+	grunt.registerTask("web-server", "start web server", function() {
 
 		var
 			webServer = require("./app/webServer"),
 			webServerConfig = grunt.config("webServer");
 
-		this.async();
+		//this.async();
 		webServer(webServerConfig);
 
 	});
 
-	grunt.registerTask("default", "start development environment", ["webServer"]);
+	grunt.registerTask("default", "start development environment",
+		[ "sass", "cssmin", "htmlmin", "handlebars", "uglify", "compress", "watch"]);
 
 };
